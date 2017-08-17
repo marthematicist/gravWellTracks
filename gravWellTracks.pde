@@ -18,21 +18,28 @@ void setup() {
 }
 
 void draw() {
-  
-  
+  angOffset += dAng;
+  WL.evolve();
   pg.beginDraw();
-  pg.background( 255 , 255 , 255 , 4 );
+  if( frameCount%4 == 0 ) {
+    pg.background( 255 , 255 , 255 , 16 );
+  }
   pg.strokeWeight(0.5);
-  for( int i = 0 ; i < 20 ; i++ ) {
-    Track t = new Track( 100 , WL );
+  int N = 20;
+  for( int i = 0 ; i < N ; i++ ) {
+    float ang = float(i) / float(N) * TWO_PI + angOffset;
+    Track t = new Track( 100 , WL  );
+    //Track t = new Track( 100 , WL  , new PVector( U*minInitVel*cos(ang) , U*minInitVel*sin(ang) ) );
     t.drawTrack();
   }
+  //WL.draw();
   pg.endDraw();
   image( pg , 0 , 0 );
   
   if( frameCount%200 == 0 ) { 
     println( frameCount , frameRate );
-    WL = new WellList( numWells );
+    //WL = new WellList( numWells );
+    WL.randomizeVelocities();
     startHue += dStartHue;
     startSat += dStartSat;
     startBri += dStartBri;

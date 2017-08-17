@@ -32,12 +32,18 @@ float maxParticleMass = 4;
 float minParticleRadius = 0.01;
 float maxParticleRadius = 0.01;
 float particleAlpha = 255;
+float angOffset = 0;
+float dAng = TWO_PI*0.0001;
+float accThresholdSq = 10000000;
 
 // well values
-int numWells = 4;
+int numWells = 5;
 float minWellMass = 0.001;
 float maxWellMass = 0.001;
-float minWellDist = 0.25;
+float minWellDist = 0.5;
+float minWellVel = 0.5;
+float maxWellVel = 2.0;
+
 
 void setupGlobalVariables() {
   hwidth = width*0.5;
